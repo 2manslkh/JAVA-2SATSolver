@@ -32,10 +32,10 @@ public class CNF {
         parseCNF(f);
         VARIABLES = Integer.parseInt(ARGUMENTS.get(1));
         CLAUSES = Integer.parseInt(ARGUMENTS.get(2));
-        visited = new boolean[10000];
-        visitedinv = new boolean[10000];
+        visited = new boolean[100000];
+        visitedinv = new boolean[100000];
 
-        scc = new int[10000];
+        scc = new int[100000];
         counter = 1;
     }
 
@@ -75,7 +75,6 @@ public class CNF {
                 }
             } else {
                 String[] args = line.split(" ");
-//                System.out.println(line);
                 A.add(Integer.parseInt(args[0]));
                 B.add(Integer.parseInt(args[1]));
             }
@@ -162,7 +161,6 @@ public class CNF {
         }
         visited[u] = true;
         for (int i = 0; i < adj.get(u).size(); i++){
-            System.out.println(adj.get(u));
             dfs1(adj.get(u).get(i));
         }
         stack.push(u);

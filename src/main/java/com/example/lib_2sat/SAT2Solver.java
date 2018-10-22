@@ -8,13 +8,16 @@ public class SAT2Solver {
     public static void main(String args[]) throws IOException {
 
         File SOLVABLE = getFile("SOLVABLE.cnf");
-        File UNSOLVABLE = getFile("UNSOLVABLE.cnf");
+        File UNSOLVABLE = getFile("largeUnsat.cnf");
 
         CNF SOLVABLE_CNF = new CNF(SOLVABLE);
         CNF UNSOLVABLE_CNF = new CNF(UNSOLVABLE);
 
+        long start = System.nanoTime()/1000;
         SOLVABLE_CNF.solve();
-        UNSOLVABLE_CNF.solve();
+//        UNSOLVABLE_CNF.solve();
+        long time = System.nanoTime()/1000 - start;
+        System.out.println("Time Taken:" + time + "ms");
 
     }
 
