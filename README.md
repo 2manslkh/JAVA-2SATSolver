@@ -1,1 +1,1 @@
-lib_2SAT
+2 SAT Solver using Kosaraju's Algorithm
