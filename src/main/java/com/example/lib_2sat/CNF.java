@@ -39,22 +39,7 @@ public class CNF {
         counter = 1;
     }
 
-    public List<String> getCOMMENTS() {
-        return COMMENTS;
-    }
-
-    public List<String> getARGUMENTS() {
-        return ARGUMENTS;
-    }
-
-    public List<Integer> getA() {
-        return A;
-    }
-
-    public List<Integer> getB() {
-        return B;
-    }
-
+    // This function helps to read the CNF File
     private void parseCNF(File f) throws IOException {
         FileReader fr = new FileReader(f);
         BufferedReader br = new BufferedReader(fr);
@@ -62,10 +47,14 @@ public class CNF {
 
         while ((line = br.readLine()) != null) {
 
+            // Skip Empty lines
+            if (line.isEmpty()){
+                continue;
+            }
             // Read Comments
-            if (line.charAt(0) == 'c') {
+            else if (line.charAt(0) == 'c') {
                 COMMENTS.add(line.substring(2));
-                System.out.println("COMMENT added");
+                //System.out.println("COMMENT added");
 
             // Read Arguments
             } else if (line.charAt(0) == 'p') {
@@ -84,6 +73,7 @@ public class CNF {
     public void solve(){
 
         // Add edges to graph
+        // Given (A B), create edges  -B --> A  &  -A --> B
         for (int i = 0; i < CLAUSES; i++){
             if (A.get(i) > 0 && B.get(i) > 0){
                 addEdges(A.get(i) + VARIABLES, B.get(i));
@@ -120,7 +110,9 @@ public class CNF {
         // Perform DFS on the inverse graph.
         // This will identify the Strongly Connected Chains
         while (stack.size() != 0){
+            // Load top of Stack
             int n = stack.peek();
+            // Pop top of Stack
             stack.pop();
 
             if (!visitedinv[n]) {
@@ -142,8 +134,10 @@ public class CNF {
     }
 
     private void addEdges(Integer a, Integer b){
-        if (adj.get(a) == null) { //gets the value for an id)
-            adj.put(a, new ArrayList<Integer>()); //no ArrayList assigned, create new ArrayList
+        //gets the value for an id)
+        if (adj.get(a) == null) {
+            //no ArrayList assigned, create new ArrayList
+            adj.put(a, new ArrayList<Integer>());
         }
         adj.get(a).add(b);
     }
@@ -177,8 +171,6 @@ public class CNF {
             // STORE SCC NUMBER of VERTEX/VARIABLE
             scc[u] = counter;
         }
-
     }
-
 }
 
