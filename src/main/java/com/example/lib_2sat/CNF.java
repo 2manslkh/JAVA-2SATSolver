@@ -72,6 +72,7 @@ public class CNF {
 
     public void solve(){
 
+        System.out.println("Solving for " + CLAUSES + " clauses.");
         // Add edges to graph
         // Given (A B), create edges  -B --> A  &  -A --> B
         for (int i = 0; i < CLAUSES; i++){

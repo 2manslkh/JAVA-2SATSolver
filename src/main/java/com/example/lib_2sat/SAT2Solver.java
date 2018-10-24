@@ -9,6 +9,7 @@ public class SAT2Solver {
 
     public static void main(String args[]) throws IOException {
 
+        System.out.println(" ===== 2 SAT Solver Timings =====");
         File SOLVABLE10 = getFile("SOLVABLE_10.cnf");
         File UNSOLVABLE10 = getFile("UNSOLVABLE_10.cnf");
         File SOLVABLE100 = getFile("SOLVABLE_100.cnf");
@@ -28,10 +29,11 @@ public class SAT2Solver {
             long start = System.nanoTime();
             cnf.solve();
             long time = System.nanoTime() - start;
-            System.out.println("Time taken: " + time);
+            System.out.println("Time taken: " + time/1000000.0 + " ms");
+            System.out.println();
         }
 
-        System.out.println(" ============= ");
+        System.out.println(" ===== RANDOM WALK Timings (BONUS PART) =====");
         List<CNFRand> cnfRandList = new ArrayList<>();
         cnfRandList.add(new CNFRand(SOLVABLE10));
         cnfRandList.add(new CNFRand(UNSOLVABLE10));
@@ -45,13 +47,15 @@ public class SAT2Solver {
             cnf.solve();
             long time = System.nanoTime() - start;
             System.out.println("Time taken: " + time/1000000.0 + " ms");
+            System.out.println();
         }
     }
 
     // Helper function to parse the CNF File
-    public static File getFile(String filename){
+    private static File getFile(String filename){
         File input;
-        String filedir = "C:\\Users\\kengh\\AndroidStudioProjects\\MyApp01\\lib_2SAT\\src\\main\\java\\com\\example\\lib_2sat";
+        String cwd = System.getProperty("user.dir");
+        String filedir = cwd + "\\lib_2SAT\\src\\main\\java\\com\\example\\lib_2sat";
         String file = filedir + "\\" + filename;
         input = new File(file);
         if (!input.exists()) {

@@ -14,17 +14,18 @@ import java.util.Stack;
 public class CNFRand {
     private List<String> COMMENTS = new ArrayList<>();
     private List<String> ARGUMENTS = new ArrayList<>();
-    private List<Integer> A = new ArrayList<>();
-    private List<Integer> B =  new ArrayList<>();
+    private List<Integer> A;
+    private List<Integer> B;
     private int VARIABLES;
     private int CLAUSES;
     private boolean[] assignments;
 
-    Random rand = new Random();
+    private Random rand = new Random();
 
 
     public CNFRand(File f) throws IOException {
         A = new ArrayList<>();
+        B = new ArrayList<>();
         B =  new ArrayList<>();
         parseCNF(f);
         VARIABLES = Integer.parseInt(ARGUMENTS.get(1));
@@ -67,6 +68,7 @@ public class CNFRand {
     }
 
     public void solve(){
+        System.out.println("Solving for " + CLAUSES + " clauses.");
         int flipCount = 0;
         //System.out.println("maxFlips = " + 10*VARIABLES*VARIABLES);
         while(flipCount < 10*VARIABLES*VARIABLES){
