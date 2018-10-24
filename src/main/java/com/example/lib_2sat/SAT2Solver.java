@@ -30,6 +30,22 @@ public class SAT2Solver {
             long time = System.nanoTime() - start;
             System.out.println("Time taken: " + time);
         }
+
+        System.out.println(" ============= ");
+        List<CNFRand> cnfRandList = new ArrayList<>();
+        cnfRandList.add(new CNFRand(SOLVABLE10));
+        cnfRandList.add(new CNFRand(UNSOLVABLE10));
+        cnfRandList.add(new CNFRand(SOLVABLE100));
+        cnfRandList.add(new CNFRand(UNSOLVABLE100));
+        cnfRandList.add(new CNFRand(SOLVABLE1000));
+        cnfRandList.add(new CNFRand(UNSOLVABLE1000));
+
+        for (CNFRand cnf : cnfRandList) {
+            long start = System.nanoTime();
+            cnf.solve();
+            long time = System.nanoTime() - start;
+            System.out.println("Time taken: " + time/1000000.0 + " ms");
+        }
     }
 
     // Helper function to parse the CNF File
